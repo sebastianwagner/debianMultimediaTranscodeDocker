@@ -30,5 +30,8 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
 USER transcodeuser
 WORKDIR /home/transcodeuser
 
+ENTRYPOINT ["transcode"]
+CMD ["--help"]
+
 # build with  docker build --tag sebastianwagner/debiantranscode:latest .
 # run with  docker run --net=none --rm --interactive --tty --volume=$(pwd)/data/:/data/ sebastianwagner/debiantranscode
