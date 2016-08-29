@@ -32,7 +32,8 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
 USER transcodeuser
 WORKDIR /home/transcodeuser
 
-ENTRYPOINT ["transcode"]
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["--help"]
 
 # build with  docker build --tag sebastianwagner/debiantranscode:latest .
