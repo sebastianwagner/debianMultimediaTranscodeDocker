@@ -19,11 +19,16 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
  apt update -qq && \
  apt install -qqy --option Dpkg::Options::="--force-confnew" \
    deb-multimedia-keyring && \
+ apt update -qq && \
  apt install -qqy transcode && \
- apt autoremove -qqy && \
  apt remove -qqy gnupg && \
+ apt autoremove -qqy && \
  apt clean -q && \
- rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/*
+ rm -rf /var/lib/apt/lists/* /tmp/* /var/cache/* /var/tmp/* && \
+ useradd -ms /bin/bash transcodeuser
+
+USER transcodeuser
+WORKDIR /home/transcodeuser
 
 # build with  docker build --tag sebastianwagner/debiantranscode:latest .
 # run with  docker run --net=none --rm --interactive --tty --volume=$(pwd)/data/:/data/ sebastianwagner/debiantranscode
