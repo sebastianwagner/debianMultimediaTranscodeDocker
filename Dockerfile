@@ -20,7 +20,9 @@ RUN export DEBIAN_FRONTEND='noninteractive' && \
  apt install -qqy --option Dpkg::Options::="--force-confnew" \
    deb-multimedia-keyring && \
  apt update -qq && \
- apt install -qqy transcode && \
+ apt install -qqy \
+  transcode \
+  && \
  apt remove -qqy gnupg && \
  apt autoremove -qqy && \
  apt clean -q && \
